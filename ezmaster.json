@@ -1,0 +1,7 @@
+{
+    "httpPort": 5601,
+    "configPath": "/usr/share/kibana/config/kibana.yml",
+    "configType": "text",
+    "dataPath": "/usr/share/kibana/data",
+    "technicalApplication": true
+}  
