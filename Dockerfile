@@ -11,9 +11,17 @@ COPY ezmaster.json /etc/
 
 EXPOSE 5601
 
+ENV XPACK_SECURITY_ENABLED false
+ENV XPACK_GRAPH_ENABLED false
+ENV XPACK_ML_ENABLED false
+ENV XPACK_REPORTING_ENABLED false
+
+ENV ES_TMPDIR /usr/share/kibana/tmp
+RUN mkdir ${ES_TMPDIR}
+ENV JAVA_OPTS "-Djava.io.tmpdir=${ES_TMPDIR} ${JAVA_OPTS}"
+
 # WORKDIR /
 # COPY docker-entrypoint.overload.sh /usr/local/bin/
 # ENTRYPOINT [ "/usr/local/bin/docker-entrypoint.overload.sh" ]
 
-RUN chmod 7111 /tmp
 ENTRYPOINT [ "/usr/local/bin/kibana-docker" ]
