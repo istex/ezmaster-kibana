@@ -1,4 +1,6 @@
 #!/bin/bash
 
 # start elasticsearch
-exec /usr/local/bin/kibana-docker $@
+chmod -R 1777 /tmp
+
+su - kibana -c /usr/local/bin/kibana-docker $@
