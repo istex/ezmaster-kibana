@@ -1,4 +1,10 @@
-FROM docker.elastic.co/kibana/kibana:5.5.3
+FROM docker.elastic.co/kibana/kibana:5.3.3
+
+USER root
+SHELL ["/bin/bash", "-c"] 
+RUN DEBIAN_FRONTEND=noninteractive apt update && apt install sudo
+
+USER kibana
 
 COPY kibana.yml /usr/share/kibana/config/
 COPY docker-entrypoint.overload.sh /usr/share/kibana/
@@ -19,7 +25,6 @@ RUN echo '{ \
 }' > /etc/ezmaster.json
 
 RUN chmod -R 1777 /tmp
-RUN usermod -a -G root kibana
 
 EXPOSE 5601
 
